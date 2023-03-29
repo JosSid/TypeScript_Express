@@ -5,7 +5,7 @@ const getItem = (req: Request, res: Response) => {
     try {
         
     } catch (error) {
-        handleHttp(res, 'ERROR_GET_ITEM');
+        handleHttp(res, 'ERROR_GET_BLOG');
     }
 }
 
@@ -13,7 +13,7 @@ const getItems = (req: Request, res: Response) => {
     try {
         
     } catch (error) {
-        handleHttp(res, 'ERROR_GET_ITEMS');
+        handleHttp(res, 'ERROR_GET_BLOGS');
     }
 }
 
@@ -22,7 +22,7 @@ const createItem = ( {body}: Request, res: Response) => {
         res.status(201)
         res.json({body})
     } catch (error) {
-        handleHttp(res, 'ERROR_CREATE_ITEM');
+        handleHttp(res, 'ERROR_CREATE_BLOG');
     }
 }
 
@@ -30,7 +30,7 @@ const updateItem = (req: Request, res: Response) => {
     try {
         
     } catch (error) {
-        handleHttp(res, 'ERROR_UPDATE_ITEM');
+        handleHttp(res, 'ERROR_UPDATE_BLOG');
     }
 }
 
@@ -38,7 +38,7 @@ const deleteItem = (req: Request, res: Response) => {
     try {
         
     } catch (error) {
-        handleHttp(res, 'ERROR_DELETE_ITEM');
+        handleHttp(res, 'ERROR_DELETE_BLOG');
     }
 }
 
