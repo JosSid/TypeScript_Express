@@ -9,6 +9,21 @@ const insertFollower = async (follower: Follower) => {
 const getFollowers = async() => {
     const responseFollowers = await FollowerModel.find({});
     return responseFollowers;
-}
+};
 
-export { insertFollower, getFollowers }
+const getFollowerById = async(id: string) => {
+    const responseFollower = await FollowerModel.findById(id);
+    return responseFollower;
+};
+
+const updateFollower = async(id: string, data:Follower) => {
+    const responseFollower = await FollowerModel.findOneAndUpdate({_id: id}, data, {new:true});
+    return responseFollower;
+};
+
+const deleteFollower = async(id: string) => {
+    const responseFollower = await FollowerModel.findOneAndDelete({_id: id});
+    return responseFollower;
+};
+
+export { insertFollower, getFollowers, getFollowerById, updateFollower, deleteFollower };

@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error_handle";
-import { insertFollower, getFollowers } from "../services/follower";
+import { insertFollower, getFollowers, getFollowerById, updateFollower, deleteFollower } from "../services/follower";
 
-const getItem = (req: Request, res: Response) => {
+const getItem = async(req: Request, res: Response) => {
     try {
-        
+        const id = req.params.id;
+        const responseFollower = await getFollowerById(id);
+        const data = responseFollower ? responseFollower : "THIS_DOCUMENT_NOT_EXISTS_IN_DB"
+        res.status(200).json(data);
     } catch (error) {
         handleHttp(res, 'ERROR_GET_ITEM');
     }
@@ -28,17 +31,21 @@ const createItem = async ({body}: Request, res: Response) => {
     }
 }
 
-const updateItem = (req: Request, res: Response) => {
+const updateItem = async ({params, body}: Request, res: Response) => {
     try {
-        
+        const {id} = params;
+        const responseFollower = await updateFollower(id, body);
+        res.status(200).json(responseFollower);
     } catch (error) {
         handleHttp(res, 'ERROR_UPDATE_ITEM');
     }
 }
 
-const deleteItem = (req: Request, res: Response) => {
+const deleteItem = async({params}: Request, res: Response) => {
     try {
-        
+        const {id} = params;
+        const responseFollower = await deleteFollower(id);
+        res.status(200).json(responseFollower);
     } catch (error) {
         handleHttp(res, 'ERROR_DELETE_ITEM');
     }
