@@ -25,7 +25,7 @@ const loginController = async ({body}: Request, res: Response) => {
             res.status(403).json({error: responseUser});
             return;
         }
-        res.status(200).json({ data: responseUser });
+        res.status(200).json(responseUser);
       } catch (error) {
         handleHttp(res, 'ERROR_CREATE_USER', error);
       }
