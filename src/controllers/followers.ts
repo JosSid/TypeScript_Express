@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error_handle";
+import { insertFollower, getFollowers } from "../services/follower";
 
 const getItem = (req: Request, res: Response) => {
     try {
@@ -9,20 +10,21 @@ const getItem = (req: Request, res: Response) => {
     }
 }
 
-const getItems = (req: Request, res: Response) => {
+const getItems = async(req: Request, res: Response) => {
     try {
-        
+        const responseFollowers = await getFollowers()
+        res.status(200).json(responseFollowers)
     } catch (error) {
         handleHttp(res, 'ERROR_GET_ITEMS');
     }
 }
 
-const createItem = ( {body}: Request, res: Response) => {
+const createItem = async ({body}: Request, res: Response) => {
     try {
-        res.status(201)
-        res.json({body})
+       const responseInsert =  await insertFollower(body);
+       res.status(201).json(responseInsert)
     } catch (error) {
-        handleHttp(res, 'ERROR_CREATE_ITEM');
+        handleHttp(res, 'ERROR_CREATE_ITEM', error);
     }
 }
 

@@ -5,15 +5,18 @@ const FollowerSchema = new Schema<Follower>(
     {
         name: {
             type: String,
+            required: true,
         },
         mail: {
             type: String,
+            required: true,
         },
         phone: {
             type: String || null
         },
         comments: {
-            type: String
+            type: String,
+            required: true,
         }
     },
     {
