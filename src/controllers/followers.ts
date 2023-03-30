@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { handleHttp } from "../utils/error_handle";
-import { insertFollower, getFollowers, getFollowerById, updateFollower, deleteFollower } from "../services/follower";
+import { insertFollower, getFollowers, getFollowerById, updateFollower, deleteFollower } from "../services/followerService";
 
 const getItem = async(req: Request, res: Response) => {
     try {

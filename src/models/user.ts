@@ -1,7 +1,7 @@
 import { Schema, Types, model, Model } from "mongoose";
-import { Follower } from "../interfaces/follower.interface";
+import { User } from "../interfaces/user.interface";
 
-const FollowerSchema = new Schema<Follower>(
+const UserSchema = new Schema<User>(
     {
         name: {
             type: String,
@@ -10,13 +10,15 @@ const FollowerSchema = new Schema<Follower>(
         mail: {
             type: String,
             required: true,
+            unique: true,
         },
-        phone: {
-            type: String || null
+        password: {
+            type: String,
+            required: true,
         },
         comments: {
             type: String,
-            required: true,
+            default: "Empty",
         }
     },
     {
@@ -25,6 +27,6 @@ const FollowerSchema = new Schema<Follower>(
     }
 );
 
-const FollowerModel = model('follower', FollowerSchema);
+const UserModel = model('user', UserSchema);
 
-export default FollowerModel;
+export default UserModel;
