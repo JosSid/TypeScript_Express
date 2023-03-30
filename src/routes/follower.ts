@@ -4,7 +4,7 @@ import { logMiddleware } from "../middleware/log";
 
 const router = Router();
 
-router.get("/", logMiddleware, getItems);
+router.get("/", getItems);
 router.get("/:id", getItem);
 
 router.post("/", createItem);
